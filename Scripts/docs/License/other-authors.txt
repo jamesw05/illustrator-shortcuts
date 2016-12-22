@@ -1,0 +1,7 @@
+None of these scripts are mine. I've gleaned them from generous people around the internet that are smarter than me. I've made every attempt to retain all of the copyright information and hope I have done right by all of these awesome folks who have shared them. If not, let me know: jamierob (at) gmail .com 
+
+John Wundes:  http://www.wundes.com/JS4AI/ http://www.wundes.com/js4ai/copyright.txt
+Wolfgang Reszel: http://illustrator.hilfdirselbst.ch/dokuwiki/skripte/javascript/uebersicht
+http://www.pictrix.jp/	Umezawa
+Nathaniel Vaughn KELSO https://github.com/nvkelso/illustrator-scripts
+
