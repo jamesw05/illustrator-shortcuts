@@ -30,5 +30,91 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
 
 Check out downfallnotes.com/ for some details on how I use these shortcuts and scripts when making maps.
 
+###Selection
+
+####M
+Select Clipping Masks. -Clipping masks are defintiely useful for cartography. They work great when you want to retain layers and mask some of the features extending beyond a frame, like in an inset map. http://www.cartotalk.com/index.php?showtopic=9202
+
+But often an imported .svg from qgis or arcmap will contain clipping masks which are generally annoying. Select them all, then delete. 
+
+####I
+Select>Inverse - Just a menu command, but o-so useful. used with other 'select same... functions' and layer locks can really speed up sorting, organizing, and deleting objects.
+
+####F
+Select>Same>Fill Color - Select objects with the same fill color. Use in conjunction with Find/Replace Objects to replace glyphs with normal Illustrator symbols. (Even in groups and different layers!).
+
+####S
+Select>Same>Stroke Color
+
+####K
+Select>Same>Graphic Style
+
+####A
+Select>Same>Appearance
+
+####H
+Select>Same>Symbol
+
+####T
+Select Text By Size - This script allows you to enter a type size or a range of type sizes to select.
+
+###Misc.
+
+####R
+Find/Replace Graphics - Used in conjunction with select>same>fill color can be used to select glyphs (text objects from Arcmap or MAPublisher LabelPro shields) which can then be replced with normal Ai symbols
+
+####E
+File>Export - Indesign has it, why not add it to Ai?
+
+####D
+File>Place - Indesign has it, why not add it to Ai?
+
+####Z
+Zoom and center selection - Extrememly useful to select and object from the layer list that you can't seem to find and go right to it.
+
+####5
+Save all open docs - A common task for me is: open 10 .ai documents>Do a single trask to each one>Run this script>stretch my legs and get a coffee while they all save.
+
+####Q
+Save all open docs and close Ai - same as above but close illustrator
+
+###Paths
+
+####^
+Arc Correction - useful for drawing a line you want to put a label on, which never is *quite* even. Run this script to straighten it out
+
+####-
+Stroke weight -0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
+
+####+
+Stroke weight +0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
+
+####P
+Object>Path>Simplify - Used all the time. Never mouse through this menu again!
+
+####W
+Reverse Path Direction - Very useful for a path that you want to apply type to which is oriented in the wrong direction. 
+
+####C
+Close points - Close an open path. based on the two closest open ends
+
+####J
+Join Nearest Path - Join a bunch of open paths together. This script omitted from this repository: https://github.com/nvkelso/illustrator-scripts/tree/master/other-authors/james_talmage
+
+####o
+Object>Path>Offset Path - Just a menu shortcut
+
+####x
+Cut at selected anchor - So useful
+
+####[
+Align text to left without moving the text.
+
+####]
+Align text to right without moving the text.
+
+####\
+Align text to center without moving the text.
+
 ## License/Credits
 See docs/License
