@@ -6,39 +6,159 @@
 
 // test env: Adobe Illustrator CS3, CS6 (Windows)
 
-// Copyright(c) 2008-2013 Hiroyuki Sato
+// Copyright(c) 2008 Hiroyuki Sato
 // https://github.com/shspage
 // This script is distributed under the MIT License.
 // See the LICENSE file for details.
 
-// Wed, 30 Jan 2013 07:00:24 +0900
+// Sun, 07 May 2017 18:18:25 +0900
+
+var INCLUDE_TEXTPATH = true;
+
+// adjust start and end position of text
+// on text paths. if false, they are simply set
+// to start and end position of each path.
+var ADJUST_TEXT_START_POSITION = true;
 
 // ----------------------------------------------
 function main(){
-  // targets are the open-paths with 2 or more anchors
-  var paths = [];
-  getPathItemsInSelection(1, paths);
-  if(paths.length < 1){
-    //alert("paths.length < 1");
-    return;
-  }
-  
-  var paths2 = [];
-  for(var i = 0; i < paths.length; i++){
-    if(convertToArc(paths[i])){
-      paths2.push(paths[i]);
+    // targets are the open-paths with 2 or more anchors
+    var paths = [];
+    getPathItemsInSelection(1, paths);
+    if(paths.length < 1){
+        //alert("paths.length < 1");
+        return;
     }
-  }
-  
-  // select converted paths
-  if(paths2.length > 0){
-    activeDocument.selection = paths2;
-  }
-}
+    
+    var paths2 = [];
+    for(var i = 0; i < paths.length; i++){
+        // get text position of text path
+        var pos_info = getTextPosition(paths[i]);
 
+        // duplicate the object to avoid TextPath undo issue.
+        // Without duplicate, if do undo after running this
+        // script with selecting a text path, the position of
+        // the text becomes strange.
+        var dup = paths[i].duplicate();
+        
+        if(convertToArc(dup)){
+            // apply text position to text path
+            fixTextPosition(dup, pos_info);
+            
+            paths2.push(dup);
+            paths[i].remove();
+        } else {
+            dup.remove();
+        }
+    }
+    
+    // select converted paths
+    if(paths2.length > 0){
+        activeDocument.selection = paths2;
+    }
+}
+// ----------------------------------------------
+// restore the position of the text according to pos_info
+// obj : TextFrameItem (TextType.PATHTEXT)
+// pos_info : returned value of getTextPosition
+function fixTextPosition(obj, pos_info){
+    if(obj.typename == "TextFrame"){
+        var default_end_t = obj.textPath.pathPoints.length - 1;
+        
+        if(ADJUST_TEXT_START_POSITION == false){
+            obj.startTValue = 0;
+            obj.endTValue = default_end_t;
+            
+        } else {
+            var start_t = getTValueForLength(obj.textPath, pos_info.start);
+            if(start_t < 0) start_t = 0;
+            var end_t   = getTValueForLength(obj.textPath, pos_info.end);
+            if(end_t < 0) end_t = default_end_t;
+
+            obj.startTValue = start_t;
+            obj.endTValue = end_t;
+        }
+    }
+}
+// ----------------------------------------------
+// returns bezier curve parameter for a point located at desired
+// length from beginning of a TextPath.
+// If returned value is 2.5, it indicates that location at desired length
+// on a path is between pathPoint 2 and 3.
+// path : TextPath (not closed)
+// ratio : ratio of desired length to entire length of a path
+function getTValueForLength(path, ratio){
+    var pp = path.pathPoints;
+    var t_value = -1;
+
+    var full_len = getPathLength(path);
+    var len = full_len * ratio;
+    
+    for(var i = 0; i < pp.length - 1; i++){
+        var b = new Bezier(pp, i, i + 1);
+        var tmp_len = b.getLength(1);
+        
+        if(tmp_len < len){
+            len -= tmp_len;
+        } else {
+            t_value = i + b.getTforLength(len);
+            break;
+        }
+    }
+    return t_value;
+}
+// ----------------------------------------------
+// returns start position and end position of text on a path
+// as ratios of desired length to entire length of a path
+// obj : TextFrameItem (TextType.PATHTEXT) (path must be not closed)
+function getTextPosition(obj){
+    if(obj.typename == "TextFrame"){
+        var full_len = getPathLength(obj.textPath);
+        var start_len = getLengthForTValue(obj.textPath, obj.startTValue, full_len);
+        var end_len = getLengthForTValue(obj.textPath, obj.endTValue, full_len);
+        return { start : start_len, end : end_len };
+    }
+}
+// ----------------------------------------------
+// returns length of an open path
+// path : PathItem, TextPath (not closed)
+function getPathLength(path){
+    var pp = path.pathPoints;
+    var full_len = 0;
+    for(var i = 0; i < pp.length - 1; i++){
+        var b = new Bezier(pp, i, i + 1);
+        full_len += b.getLength(1);
+    }
+    return full_len;
+}
+// ----------------------------------------------
+// path : PathItem, TextPath (not closed)
+// tValue : parameter for bezier curve
+// full_len : length of a path
+function getLengthForTValue(path, tValue, full_len){
+    if(full_len == 0) return 0;
+    
+    var int_part = Math.floor(tValue);
+    var float_part = tValue - int_part;
+    
+    var total_len = 0;
+    if(int_part > 0){
+        for(var i = 0; i < int_part; i++){
+            var b = new Bezier(path.pathPoints, i, i + 1);
+            total_len += b.getLength(1);
+        }
+    }
+    if(float_part > 0){
+        var b = new Bezier(path.pathPoints, int_part, int_part + 1);
+        total_len += b.getLength(float_part);
+    }
+
+    return total_len / full_len;
+}
 // ----------------------------------------------
 function convertToArc(pi){
-  var p = pi.pathPoints;
+  var p = pi.typename == "PathItem"  // or "TextFrame"
+    ? pi.pathPoints : pi.textPath.pathPoints;
   var a0 = p[0].anchor;
   var a3 = p[p.length - 1].anchor;
 
@@ -209,7 +329,6 @@ function convertToArc(pi){
 
 
 // ----------------------------------------------
-// 
 function setPathPoint(p, a, ld, rd){
   p.anchor = a;
   p.leftDirection = ld;
@@ -382,6 +501,16 @@ function extractPaths(s, pp_length_limit, paths){
       }
       paths.push(s[i]);
       
+    } else if(INCLUDE_TEXTPATH
+              && s[i].typename == "TextFrame"
+              && s[i].kind == TextType.PATHTEXT
+              && !s[i].textPath.closed){
+        if(pp_length_limit
+           && s[i].textPath.pathPoints.length <= pp_length_limit){
+            continue;
+        }
+        paths.push(s[i]);
+        
     } else if(s[i].typename == "GroupItem"){
       // search for PathItems in GroupItem, recursively
       extractPaths(s[i].pageItems, pp_length_limit, paths);
@@ -396,46 +525,108 @@ function extractPaths(s, pp_length_limit, paths){
 
 // Bezier ================================
 var Bezier = function(pp, idx1, idx2){
-  this.p  = pp;
-  this.p0 = pp[idx1];
-  this.p1 = pp[idx2];
-  
-  this.q = [pp[idx1].anchor, pp[idx1].rightDirection,
-            pp[idx2].leftDirection, pp[idx2].anchor];
-  this.a0 = this.q[0];
-  this.r = this.q[1];
-  this.l = this.q[2];
-  this.a1 = this.q[3];
-  
-  this.x = defBezierCoefficients(this.q, 0);
-  this.y = defBezierCoefficients(this.q, 1);
+    this.p  = pp;
+    this.p0 = pp[idx1];
+    this.p1 = pp[idx2];
+    
+    this.q = [pp[idx1].anchor, pp[idx1].rightDirection,
+              pp[idx2].leftDirection, pp[idx2].anchor];
+    this.a0 = this.q[0];
+    this.r = this.q[1];
+    this.l = this.q[2];
+    this.a1 = this.q[3];
+    
+    this.x = defBezierCoefficients(this.q, 0);
+    this.y = defBezierCoefficients(this.q, 1);
+    
+    this.params = null;
+    this.length = null;
 }
 // --------------------------------------
 Bezier.prototype = {
-  pnt : function(t){
-    return [ t* (t* (this.x[0]*t + this.x[1]) + this.x[2]) + this.x[3],
-             t* (t* (this.y[0]*t + this.y[1]) + this.y[2]) + this.y[3] ];
-  },
-  getTangentV : function(){
-    var ar = []
-      var ts = [];
-    ts = ts.concat( equation2( 3*this.x[0], 2*this.x[1], this.x[2] ) );
-    for(var i=0; i<ts.length; i++){
-      if(ts[i]<=1 && ts[i]>=0) ar.push(ts[i]);
+    pnt : function(t){
+        return [ t* (t* (this.x[0]*t + this.x[1]) + this.x[2]) + this.x[3],
+                 t* (t* (this.y[0]*t + this.y[1]) + this.y[2]) + this.y[3] ];
+    },
+    getTangentV : function(){
+        var ar = []
+          var ts = [];
+        ts = ts.concat( equation2( 3*this.x[0], 2*this.x[1], this.x[2] ) );
+        for(var i=0; i<ts.length; i++){
+            if(ts[i]<=1 && ts[i]>=0) ar.push(ts[i]);
+        }
+        if(ar.length>2) ar.sort();
+        return ar;
+    },
+    getTangentH : function(){
+        var ar = []
+          var ts = [];
+        ts = ts.concat( equation2( 3*this.y[0], 2*this.y[1], this.y[2] ) );
+        for(var i=0; i<ts.length; i++){
+            if(ts[i]<=1 && ts[i]>=0) ar.push(ts[i]);
+        }
+        if(ar.length>2) ar.sort();
+        return ar;
+    },
+    setParams : function(){
+        var m = [this.a1[0] - this.a0[0] + 3 * (this.r[0] - this.l[0]),
+                 this.a0[0] - 2 * this.r[0] + this.l[0],
+                 this.r[0] - this.a0[0]];
+        var n = [this.a1[1] - this.a0[1] + 3 * (this.r[1] - this.l[1]),
+                 this.a0[1] - 2 * this.r[1] + this.l[1],
+                 this.r[1] - this.a0[1]];
+        
+        this.params = [ m[0] * m[0] + n[0] * n[0],
+                        4 * (m[0] * m[1] + n[0] * n[1]),
+                        2 * ((m[0] * m[2] + n[0] * n[2]) + 2 * (m[1] * m[1] + n[1] * n[1])),
+                        4 * (m[1] * m[2] + n[1] * n[2]),
+                        m[2] * m[2] + n[2] * n[2]];
+    },
+    getLength : function(t){
+        if(this.params == null) this.setParams();
+        var k = this.params;
+    
+        var h = t / 128;
+        var hh = h * 2;
+        
+        var fc = function(t, k){
+            return Math.sqrt(t * (t * (t * (t * k[0] + k[1]) + k[2]) + k[3]) + k[4]) || 0 };
+        
+        var total = (fc(0, k) - fc(t, k)) / 2;
+        
+        for(var i = h; i < t; i += hh){
+            total += 2 * fc(i, k) + fc(i + h, k);
+        }
+        
+        return total * hh;
+    },
+    getTforLength : function(len){
+        if(this.params == null) this.setParams();
+        var k = this.params;
+
+        if(this.length == null) this.length = this.getLength(1);
+        if(len <= 0){
+            return 0;
+        } else if(len > this.length){
+            return 1;
+        }
+        
+        var t, d;
+        var t0 = 0;
+        var t1 = 1;
+        var torelance = 0.001;
+        
+        for(var h = 1; h < 30; h++){
+            t = t0 + (t1 - t0) / 2;
+            d = len - this.getLength(t);
+            
+            if(Math.abs(d) < torelance) break;
+            else if(d < 0) t1 = t;
+            else t0 = t;
+        }
+    
+        return t;
     }
-    if(ar.length>2) ar.sort();
-    return ar;
-  },
-  getTangentH : function(){
-    var ar = []
-      var ts = [];
-    ts = ts.concat( equation2( 3*this.y[0], 2*this.y[1], this.y[2] ) );
-    for(var i=0; i<ts.length; i++){
-      if(ts[i]<=1 && ts[i]>=0) ar.push(ts[i]);
-    }
-    if(ar.length>2) ar.sort();
-    return ar;
-  }
 }
 // ------------------------------------------------
 function defBezierCoefficients(q, n){
