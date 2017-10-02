@@ -11,9 +11,10 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
 3. Clone (or unzip) this repo into this folder: 
   * `git clone https://github.com/jamesw05/illustrator-shortcuts.git Scripts`
   *The important bit here is to have the Folder structure the same: en_US/Scripts/%all-of-the-scripts%*
-4. Download and install Spark: https://www.macupdate.com/app/mac/14352/spark
+4. Download and install Spark: https://www.shadowlab.org/softwares/spark.php . You might need to "allow installation from an unidentified developer" in system prefs.
 5. Open system preferences and allow spark app to control your computer. System Preferences>Security and Privacy>Privacy
 6. Import the .splx file from this repo (docs/shortcuts/illustrator-shortcuts-mac.splx) into Spark to load the shortcuts: (File>Revert to Spark Library Backup) 
+7. Restart illustrator to load the new scripts as 'File>Scripts' menu items
 7. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
 
 **Win:**
