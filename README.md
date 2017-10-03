@@ -15,7 +15,9 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
 5. Open system preferences and allow spark app to control your computer. System Preferences>Security and Privacy>Privacy
 6. Import the .splx file from this repo (docs/shortcuts/illustrator-shortcuts-mac.splx) into Spark to load the shortcuts: (File>Revert to Spark Library Backup) 
 7. Restart illustrator to load the new scripts as 'File>Scripts' menu items
-7. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
+8. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
+
+Known Issue: Unfortunately, spark is not under current development and is a bit finicky. If the shortcuts don't work, restart, start/strop the daeomon, etc. Once it starts working (and is set to run on startup) it will run smoothly. 
 
 **Win:**
 
