@@ -1,5 +1,3 @@
-#illustrator-scripts
-
 This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for Spark (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.11.6 and Illustrator CS6 and CC 2017. For Windows I've tested this with Windows 7 and Illustrator CC 2017.
 
 ## Installation
@@ -34,92 +32,90 @@ Optional: make the .ahk file load on windows startup:
 
 ## Usage
 
-Check out downfallnotes.com/ for some details on how I use these shortcuts and scripts when making maps.
+**Selection**
 
-###Selection
-
-####M
+**M**
 Select Clipping Masks. -Clipping masks are defintiely useful for cartography. They work great when you want to retain layers and mask some of the features extending beyond a frame, like in an inset map. http://www.cartotalk.com/index.php?showtopic=9202
 
 But often an imported .svg from qgis or arcmap will contain clipping masks which are generally annoying. Select them all, then delete. 
 
-####I
+**I**
 Select>Inverse - Just a menu command, but o-so useful. used with other 'select same... functions' and layer locks can really speed up sorting, organizing, and deleting objects.
 
-####F
+**F**
 Select>Same>Fill Color - Select objects with the same fill color. Use in conjunction with Find/Replace Objects to replace glyphs with normal Illustrator symbols. (Even in groups and different layers!).
 
-####S
+**S**
 Select>Same>Stroke Color
 
-####K
+**K**
 Select>Same>Graphic Style
 
-####A
+**A**
 Select>Same>Appearance
 
-####H
+**H**
 Select>Same>Symbol
 
-####T
+**T**
 Select Text By Size - This script allows you to enter a type size or a range of type sizes to select.
 
-###Misc.
+**Misc.**
 
-####R
+**R**
 Find/Replace Graphics - Used in conjunction with select>same>fill color can be used to select glyphs (text objects from Arcmap or MAPublisher LabelPro shields) which can then be replced with normal Ai symbols
 
-####E
+**E**
 File>Export - Indesign has it, why not add it to Ai?
 
-####D
+**D**
 File>Place - Indesign has it, why not add it to Ai?
 
-####Z
+**Z**
 Zoom and center selection - Extrememly useful to select and object from the layer list that you can't seem to find and go right to it.
 
-####5
+**5**
 Save all open docs - A common task for me is: open 10 .ai documents>Do a single trask to each one>Run this script>stretch my legs and get a coffee while they all save.
 
-####Q
+**Q**
 Save all open docs and close Ai - same as above but close illustrator
 
-###Paths
+**Paths**
 
-####^
-Arc Correction - useful for drawing a line you want to put a label on, which never is *quite* even. Run this script to straighten it out
+**^**
+Arc Correction - useful for drawing a line you want to put a label on, which never is *quite* even. Run this script to straighten it out. Works on path(s) and path text objects.
 
-####-
+**&**
+Arc Correction Flip - Flip the orientation of a path(s) or text path(s). useful if you want to place a label on the opposite site of a feature that it was auto-placed on. 
+
+**-**
 Stroke weight -0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
 
-####+
+**+**
 Stroke weight +0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
 
-####P
+**P**
 Object>Path>Simplify - Used all the time. Never mouse through this menu again!
 
-####W
+**W**
 Reverse Path Direction - Very useful for a path that you want to apply type to which is oriented in the wrong direction. 
 
-####C
+**C**
 Close points - Close an open path. based on the two closest open ends
 
-####J
-Join Nearest Path - Join a bunch of open paths together. This script omitted from this repository: https://github.com/nvkelso/illustrator-scripts/tree/master/other-authors/james_talmage
-
-####o
+**o**
 Object>Path>Offset Path - Just a menu shortcut
 
-####x
+**x**
 Cut at selected anchor - So useful
 
-####[
+**[**
 Align text to left without moving the text.
 
-####]
+**]**
 Align text to right without moving the text.
 
-####\
+**\ **
 Align text to center without moving the text.
 
 ## License/Credits
