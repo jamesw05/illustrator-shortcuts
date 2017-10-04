@@ -15,7 +15,9 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
 7. Restart illustrator to load the new scripts as 'File>Scripts' menu items
 8. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
 
-Known Issue: Unfortunately, spark is not under current development and is a bit finicky. If the shortcuts don't work, restart, start/strop the daeomon, etc. Once it starts working (and is set to run on startup) it will run smoothly. 
+Known Issue: Unfortunately, spark is not under current development and is a bit finicky. If the shortcuts don't work, restart, start/strop the daeomon, etc. Once it starts working (and is set to run on startup) it will run smoothly. Make sure that both the Spark.app and Spark Daemon.app are both allowed access to control your computer in System Prefs:
+
+![allow access in system prefs](https://user-images.githubusercontent.com/799232/31181977-e150c884-a8df-11e7-827a-051acdbd3c37.png "allow access in system prefs")
 
 **Win:**
 
@@ -115,7 +117,7 @@ Align text to left without moving the text.
 **]**
 Align text to right without moving the text.
 
-**\ **
+**\**
 Align text to center without moving the text.
 
 ## License/Credits
