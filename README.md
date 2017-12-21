@@ -91,10 +91,10 @@ Arc Correction - useful for drawing a line you want to put a label on, which nev
 Arc Correction Flip - Flip the orientation of a path(s) or text path(s). useful if you want to place a label on the opposite site of a feature that it was auto-placed on. 
 
 **-**
-Stroke weight -0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
+Stroke weight -0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments. Note: this script can make large, complex docs become unresponsive.
 
 **+**
-Stroke weight +0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments
+Stroke weight +0.1pt - the arrows to adjust stroke weight by a whole postscript point are way to coarse. run this to quickly adjust a stroke weight in 0.1pt increments. Note: this script can make large, complex docs become unresponsive.
 
 **P**
 Object>Path>Simplify - Used all the time. Never mouse through this menu again!
@@ -111,14 +111,22 @@ Object>Path>Offset Path - Just a menu shortcut
 **x**
 Cut at selected anchor - So useful
 
+**Text**
+
 **[**
 Align text to left without moving the text.
 
 **]**
 Align text to right without moving the text.
 
-**\**
+**\\**
 Align text to center without moving the text.
+
+**/**
+Set leading of selected text object(s) to the font size value.
+
+**>**
+Batch increase text size of text object(s) by x points.
 
 ## License/Credits
 See docs/License

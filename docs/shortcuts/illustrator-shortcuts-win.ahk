@@ -52,4 +52,6 @@ ScriptDir = C:\Users\username\illustrator-shortcuts
 ^+[::Run, Illustrator.exe %ScriptDir%\alignTextFieldLeft.jsx ; File>Scripts>alignTextFieldLeft.jsx
 ^+]::Run, Illustrator.exe %ScriptDir%\alignTextFieldRight.jsx ; File>Scripts>alignTextFieldRight.jsx
 ^+\::Run, Illustrator.exe %ScriptDir%\alignTextFieldCenter.jsx ; File>Scripts>alignTextFieldCenter.jsx
+^+/::Run, Illustrator.exe %A_ScriptDir%\fixTextLeading.jsx ; File>Scripts>fixTextLeading.jsx
+^+.::Run, Illustrator.exe %A_ScriptDir%\fontSizeIncrement.jsx ; File>Scripts>fontSizeIncrement.jsx
 ^+B::Run, Illustrator.exe %ScriptDir%\batchTextEdit.jsx ; File>Scripts>batchTextEdit.jsx
