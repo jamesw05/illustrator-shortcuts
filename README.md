@@ -1,4 +1,4 @@
-This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for Spark (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.11.6 and Illustrator CS6 and CC 2017. For Windows I've tested this with Windows 7 and Illustrator CC 2017.
+This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for Spark (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.11.6 and Illustrator CS6 and CC 2018. For Windows I've tested this with Windows 7 with Illustrator CS6 and Illustrator CC 2018. NOTE: Until 8/2018, the method to use the shortcuts on Mac was the deprecated SPark app. Spark doesn't work with newer versions of MacOS and was pretty buggy, so the BetterTouchTool app is now used to fire the keyboard shortcuts.
 
 ## Installation
 
@@ -9,15 +9,13 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
 3. Clone (or unzip) this repo into this folder: 
   * `git clone https://github.com/jamesw05/illustrator-shortcuts.git Scripts`
   *The important bit here is to have the Folder structure the same: en_US/Scripts/%all-of-the-scripts%*
-4. Download and install Spark: https://www.shadowlab.org/softwares/spark.php . You might need to "allow installation from an unidentified developer" in system prefs.
-5. Open system preferences and allow spark app to control your computer. System Preferences>Security and Privacy>Privacy
-6. Import the .splx file from this repo (docs/shortcuts/illustrator-shortcuts-mac.splx) into Spark to load the shortcuts: (File>Revert to Spark Library Backup) 
+4. Download and install BetterTouchTool: https://folivora.ai/ . You might need to "allow installation from an unidentified developer" in system prefs. There is a 45 day trial, but this app is so incredibly useful, it is worth every penny.
+5. Open system preferences and allow BetterTouchTool to control your computer. System Preferences>Security and Privacy>Privacy
+6. Import the Ai-CS6-CC2018-shortcuts.json file from this repo (docs/shortcuts/Ai-CS6-CC2018-shortcuts.json) into BetterTouchTool to load the shortcuts: (File>Revert to Spark Library Backup)
+![import bettertouchtool presets](https://user-images.githubusercontent.com/799232/44233242-8976d980-a160-11e8-8ad2-d949f68de555.png "import bettertouchtool presets")
 7. Restart illustrator to load the new scripts as 'File>Scripts' menu items
 8. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
 
-Known Issue: Unfortunately, spark is not under current development and is a bit finicky. If the shortcuts don't work, restart, start/strop the daeomon, etc. Once it starts working (and is set to run on startup) it will run smoothly. Make sure that both the Spark.app and Spark Daemon.app are both allowed access to control your computer in System Prefs:
-
-![allow access in system prefs](https://user-images.githubusercontent.com/799232/31181977-e150c884-a8df-11e7-827a-051acdbd3c37.png "allow access in system prefs")
 
 **Win:**
 
@@ -60,7 +58,7 @@ Select>Same>Appearance
 Select>Same>Symbol
 
 **T**
-Select Text By Size - This script allows you to enter a type size or a range of type sizes to select.
+Text Selection Wizard - This script allows you select and/or replace by size, a range os sizes, font family, font style, and combinations of all of these options
 
 **Misc.**
 
@@ -107,6 +105,9 @@ Close points - Close an open path. based on the two closest open ends
 
 **o**
 Object>Path>Offset Path - Just a menu shortcut
+
+**V**
+Object>Path>Round Any Corner - great for smoothing out really complex lines (like complicated/switchback-y roads from a GIS)
 
 **x**
 Cut at selected anchor - So useful
