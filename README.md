@@ -1,4 +1,6 @@
-This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for Spark (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.11.6 and Illustrator CS6 and CC 2018. For Windows I've tested this with Windows 7 with Illustrator CS6 and Illustrator CC 2018. NOTE: Until 8/2018, the method to use the shortcuts on Mac was the deprecated SPark app. Spark doesn't work with newer versions of MacOS and was pretty buggy, so the BetterTouchTool app is now used to fire the keyboard shortcuts.
+This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for BetterTouchTool (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.11.6 and Illustrator CS6 and CC 2018. For Windows I've tested this with Windows 7 with Illustrator CS6 and Illustrator CC 2018.
+
+NOTE: Until 8/2018, the method to use the shortcuts on Mac was the deprecated Spark app. Spark doesn't work with newer versions of MacOS and was pretty buggy, so the BetterTouchTool app is now used to fire the keyboard shortcuts.
 
 ## Installation
 
@@ -11,7 +13,7 @@ This is an effort to reduce the time spent mousing through menus in Adobe Illust
   *The important bit here is to have the Folder structure the same: en_US/Scripts/%all-of-the-scripts%*
 4. Download and install BetterTouchTool: https://folivora.ai/ . You might need to "allow installation from an unidentified developer" in system prefs. There is a 45 day trial, but this app is so incredibly useful, it is worth every penny.
 5. Open system preferences and allow BetterTouchTool to control your computer. System Preferences>Security and Privacy>Privacy
-6. Import the Ai-CS6-CC2018-shortcuts.json file from this repo (docs/shortcuts/Ai-CS6-CC2018-shortcuts.json) into BetterTouchTool to load the shortcuts: (File>Revert to Spark Library Backup)
+6. Import the Ai-CS6-CC2018-shortcuts.json file from this repo (docs/shortcuts/Ai-CS6-CC2018-shortcuts.json) into BetterTouchTool to load the shortcuts: (see red arrows in screenshot below)
 ![import bettertouchtool presets](https://user-images.githubusercontent.com/799232/44233242-8976d980-a160-11e8-8ad2-d949f68de555.png "import bettertouchtool presets")
 7. Restart illustrator to load the new scripts as 'File>Scripts' menu items
 8. Print out the handy cheatsheet (docs/cheatsheet/ai-shortcut-cheatsheet-mac.ai), tape it to your monitor and unleash the productivity! 
