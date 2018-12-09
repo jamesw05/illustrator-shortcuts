@@ -7,6 +7,7 @@
     const SCRIPTNAME = "apply Style With RegExp";
 
     var _opt = {
+        ignore_case : true,
         clearing_overrides : true,
         styles : [],
         input_field_width : 16,
@@ -39,6 +40,9 @@
         win.list1 = win.add("dropdownlist", undefined, _opt.styles);
         win.list1.selection = 0;
         
+        win.check0 = win.add("checkbox", undefined, "ignore case");
+        win.check0.value = _opt.ignore_case;
+
         win.check1 = win.add("checkbox", undefined, "clearing overrides");
         win.check1.value = _opt.clearing_overrides;
 
@@ -61,6 +65,7 @@
             }
             _opt.character_style = app.activeDocument.characterStyles.getByName(style_name);
 
+            _opt.ignore_case = win.check0.value;
             _opt.clearing_overrides = win.check1.value;
             return true;
         }
@@ -99,11 +104,12 @@
         // regards pixxxel schubser
         
         var result, aCon;
+        var regex_option = _opt.ignore_case ? "gmi" : "gm";
     
         for(var i = _opt.text_frames.length - 1; i >= 0; i--){
             var atf = _opt.text_frames[i];
     
-            var s = new RegExp(_opt.rex, "gi");
+            var s = new RegExp(_opt.rex, regex_option);
 
             while ( result = s.exec(atf.contents)) {
                 
