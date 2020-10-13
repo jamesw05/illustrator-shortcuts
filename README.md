@@ -1,8 +1,9 @@
 This is an effort to reduce the time spent mousing through menus in Adobe Illustrator for options that I use frequently as a cartographer. It is a group of .ai scripts useful for cartography and shortcut settings for menu commands setup for BetterTouchTool (Mac) and Auhohotkey (Win). I use a Mac, so i've tested this with MacOS 10.14.6 and Illustrator CS6 and CC 2020. For Windows I've tested this with Windows 10 with Illustrator CS6 and Illustrator CC 2020.
 
 ## Installation
-**Installatio Videos:**
+**Installation Videos:**
 Updated for 2020, there are installation videos for Windows and Mac [here](https://downfallnotes.com/index.php/2020/10/03/install-scripts-shortcuts-cartography-illustrator-2020/).
+
 **Mac:**
 
 1. Navigate to your 'en_US' (or another language) folder for your version of Illustrator. Mine was: /Applications/Adobe Illustrator CS6/Presets.localized/en_US
